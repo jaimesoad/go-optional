@@ -24,6 +24,13 @@ func (o *Optional[T]) Default(data T) T {
 	return o.data
 }
 
+func (o Optional[T]) Unwrap() T {
+	if o.err != nil {
+		log.Fatal(o.err.Error())
+	}
+	return o.data
+}
+
 func (o *Optional[T]) Log() {
 	if o.err != nil {
 		log.Println(o.err.Error())
