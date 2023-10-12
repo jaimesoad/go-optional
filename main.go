@@ -17,7 +17,7 @@ func Get[T any](val T, err error) Optional[T] {
 	return Optional[T]{data: val, err: err}
 }
 
-func (o *Optional[T]) Default(data T) T {
+func (o Optional[T]) Default(data T) T {
 	if o.err != nil {
 		return data
 	}
@@ -31,14 +31,18 @@ func (o Optional[T]) Unwrap() T {
 	return o.data
 }
 
-func (o *Optional[T]) Log() {
+func (o Optional[T]) Log() {
 	if o.err != nil {
 		log.Println(o.err.Error())
 	}
 }
 
-func (o *Optional[T]) Fatal() {
+func (o Optional[T]) Fatal() {
 	if o.err != nil {
 		log.Fatal(o.err.Error())
 	}
+}
+
+func (o Optional[T]) Ok() bool {
+	return o.err == nil
 }
