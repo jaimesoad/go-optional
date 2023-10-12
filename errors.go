@@ -19,3 +19,7 @@ func Panic(err error) {
 		panic(err.Error())
 	}
 }
+
+func Ok(err error) bool {
+	return err == nil
+}
